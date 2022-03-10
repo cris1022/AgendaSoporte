@@ -25,6 +25,13 @@
   <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+
+  <!-- Data tables -->
+
+  <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+
+
  
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -92,5 +99,84 @@
 <script src="http://localhost/agendasoporte-l8/public/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="http://localhost/agendasoporte-l8/public/dist/js/demo.js"></script>
+
+<!-- data tables -->
+<script src="http://localhost/agendasoporte-l8/public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+<script src="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+  $(".table").DataTable({
+
+    "language":{
+
+      "sSearch":"Buscar:",
+      "sEmptyTable":"No hay datos en la tabla",
+      "sZeroRecords":"No se encontraron resultados",
+      "sInfo":"Mostrando registros del _START_ al _END_ de un total _TOTAL_",
+      "sInfoEmpty":"Mostrando registros del 0 al 0 de un total de 0",
+      "sInFiltered":"(filtrando de un total de _MAX_ registros)",
+      "oPaginate":{
+        "sFirst":"Primero",
+        "sLast":"Ultimo",
+        "sNext":"Siguiente",
+        "sPrevious":"Anterior",
+
+
+                   },
+
+      "sLoadingRecords":"Cargando.....",
+      "sLengthMenu":"Mostrar _MEMU_ registros",
+               }
+
+  });
+
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('registrado') =='Si')
+  
+<script type="text/javascript">
+
+    Swal.fire(
+
+      'El tecnico a sido registrado',
+      '',
+      'success'
+
+    )
+  
+  </script>
+  @endif
+
+<script  type="text/javascript" >
+
+  $(.'table').on('click','EliminarTecnico',function(){
+
+    Swal.fire({
+
+      title:'¿SEGURO QUE DESEA ELIMINAR EL TECNICO?',
+      icon:'warning',
+      showCancellButton:true,
+      cancelButtonText:'cancelar'      
+      cancelButtonColor:'#d33',
+      confirmButtonText:'Eliminar',
+      confirmButtonColor:'#3085d6'
+
+
+    }).then((result)=>{
+      if(result.isConfirm){
+        window.location="Tecnicos";
+      }
+    })
+  })
+
+  
+
+
+</script>
+
 </body>
 </html>

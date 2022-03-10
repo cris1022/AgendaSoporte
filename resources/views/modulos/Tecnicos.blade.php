@@ -16,7 +16,7 @@
             
             <div class="box-body">
 
-                <table class="table table-bordered table-hover table-striped">
+                <table class="table table-bordered table-hover table-striped dt-responsive">
 
                     <thead>
 
@@ -36,21 +36,44 @@
                     </thead>
 
                     <tbody>
+                        @foreach($tecnicos as $tecnico)
+
+                        @if($tecnico->rol=="tecnico")
                         <tr>
-                            <td>5</td>
-                            <td>Cristian Abondano</td>
-                            <td>television</td>
-                            <td>correo</td>
-                            <td>11111</td>
-                            <td>55555555</td>
-                            <td>7777777</td>
+                            <td>{{ $tecnico->id}}</td>
+                            <td>{{ $tecnico->name}}</td>
+                            <td>{{ $tecnico->SER->servicio}}</td>
+                            <td>{{ $tecnico->email}}</td>
+                            @if($tecnico->documento !="")
+                                 <td>{{ $tecnico->documento}}</td>
+
+                            @else
+                                 <td> Aún no registrado</td>  
+                            @endif
+                            @if($tecnico->telefono!="")
+                                 <td>{{ $tecnico->telefono}}</td>
+
+                            @else
+                                <td> no disponible</td>  
+                            @endif
+                            @if($tecnico->tarjeta_profesional !="")
+                                 <td>{{ $tecnico->tarjeta_profesional}}</td>
+
+                            @else
+                                 <td> Aún no registrado</td>  
+                            @endif
+                         
 
                             <td>
 
-                                <button class="btn btn-danger"> <i class="fa fa-trash"></i></button>
+                                <button class="btn btn-danger EliminarTecnico" > <i class="fa fa-trash"></i></button>
 
                             </td>
                         </tr>
+                        @endif
+
+                        @endforeach
+                        
                     </tbody>
 
                 </table>
@@ -71,6 +94,8 @@
             <div class="modal-content">
 
                 <form method="post">
+
+                        @csrf
 
                     <div class="modal-body">
 
@@ -105,6 +130,9 @@
                                 <h2>Email</h2>
 
                                 <input type="email" class="form-control input-lg" name="email" value="">
+                                @error('email')
+                                <div class="alert alert-danger">El email ya existe</div>
+                                @enderror
 
                             </div>
 

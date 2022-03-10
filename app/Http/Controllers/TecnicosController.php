@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tecnicos;
 use App\Models\Servicios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TecnicosController extends Controller
 {
@@ -19,28 +20,41 @@ class TecnicosController extends Controller
         }
 
         $servicios= Servicios::all();
+        $tecnicos= Tecnicos::all();
 
-        return view('modulos.Tecnicos')->with('servicios',$servicios);
+        return view('modulos.Tecnicos',compact('servicios','tecnicos'));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function store(Request $request)
     {
-        //
+      $datos=request()->validate([
+          'name'=>['required'],
+          'id_servicio'=>['required'],
+          'password'=>['required', 'string', 'min:3'],
+          'email'=>['required', 'string', 'email','unique:users']
+      ]);
+
+      Tecnicos::create([
+        'name'=>$datos['name'],
+        'email'=>$datos['email'],
+        'password'=>Hash::make($datos['password']),
+        'documento'=>'',
+        'telefono'=>'',
+        'direccion'=>'',
+        'tarjeta_profesional'=>'',
+        'id_servicio'=>$datos['id_servicio'],
+           
+        'rol'=>'tecnico',
+    
+        
+        
+
+
+       
+    ]);
+        return redirect('Tecnicos')->with('registrado', 'Si');
+
     }
 
     /**

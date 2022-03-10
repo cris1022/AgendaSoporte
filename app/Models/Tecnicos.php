@@ -13,7 +13,7 @@ class Tecnicos extends Model
 
     protected $fillable=[
 
-        'name','email','password','documento','telefono','tarjeta_profesional','id_servicio','rol',
+        'name','email','password','documento','telefono','direccion','tarjeta_profesional','id_servicio','rol',
 
 
 
@@ -23,5 +23,10 @@ class Tecnicos extends Model
     ];
 
     public $timestamp=false;
+
+    public function SER(){
+
+        return $this->belongsTo(Servicios::class,'id_servicio');
+    }
 
 }
