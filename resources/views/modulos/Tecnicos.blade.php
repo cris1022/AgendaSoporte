@@ -66,7 +66,13 @@
 
                             <td>
 
-                                <button class="btn btn-danger EliminarTecnico" > <i class="fa fa-trash"></i></button>
+                               <button class="btn btn-danger EliminarTecnico" Did="{{$tecnico->id}}">
+
+                                    <i class="fa fa-trash">
+
+                                    </i>
+
+                               </button>
 
                             </td>
                         </tr>

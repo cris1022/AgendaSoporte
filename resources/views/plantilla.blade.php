@@ -127,7 +127,7 @@
                    },
 
       "sLoadingRecords":"Cargando.....",
-      "sLengthMenu":"Mostrar _MEMU_ registros",
+      "sLengthMenu":"Mostrar _MENU_ registros",
                }
 
   });
@@ -138,7 +138,7 @@
 
 @if(session('registrado') =='Si')
   
-<script type="text/javascript">
+    <script type="text/javascript">
 
     Swal.fire(
 
@@ -148,31 +148,36 @@
 
     )
   
-  </script>
+    </script>
   @endif
 
-<script  type="text/javascript" >
+  <script type="text/javascript">
 
-  $(.'table').on('click','EliminarTecnico',function(){
+      $('.table').on('click', '.EliminarTecnico', function () {
 
-    Swal.fire({
+        var Did =$(this).attr('Did');
 
-      title:'¿SEGURO QUE DESEA ELIMINAR EL TECNICO?',
-      icon:'warning',
-      showCancellButton:true,
-      cancelButtonText:'cancelar'      
-      cancelButtonColor:'#d33',
-      confirmButtonText:'Eliminar',
-      confirmButtonColor:'#3085d6'
+        Swal.fire({
 
+          title:'¿Seguro(a) que desea eliminar este Tecnico?',
+          icon: 'warning',
+          showCancelButton:true,
+          cancelButtonText: 'Cancelar',
+          CancelButtonColor: '#d33',
+          confirmButtonText: 'Eliminar',
+          confirmButtonColor: '#3085d6'
 
-    }).then((result)=>{
-      if(result.isConfirm){
-        window.location="Tecnicos";
-      }
-    })
-  })
+        }).then((result) =>{
 
+         if(result.isConfirmed){
+
+           window.location ="Eliminar-Tecnico/"+Did;
+          }
+        }) 
+        
+      })
+
+  </script>
   
 
 

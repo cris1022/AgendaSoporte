@@ -28,3 +28,4 @@ Route::delete('borrar-Servicio/{id}', [ServiciosController::class, 'destroy']);
 
 Route::get('Tecnicos', [TecnicosController::class, 'index']);
 Route::post('Tecnicos', [TecnicosController::class, 'store']);
+Route::get('Eliminar-Tecnico/{id}', [TecnicosController::class, 'destroy']);

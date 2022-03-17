@@ -6,6 +6,7 @@ use App\Models\Tecnicos;
 use App\Models\Servicios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class TecnicosController extends Controller
 {
@@ -57,49 +58,11 @@ class TecnicosController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tecnicos  $tecnicos
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Tecnicos $tecnicos)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Tecnicos  $tecnicos
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tecnicos $tecnicos)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tecnicos  $tecnicos
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Tecnicos $tecnicos)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Tecnicos  $tecnicos
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Tecnicos $tecnicos)
-    {
-        //
+       DB::table('users')->whereId($id)->delete();
+       return redirect('Tecnicos');
     }
 }
 // cometario prueba*
