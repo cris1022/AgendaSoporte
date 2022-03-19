@@ -149,6 +149,20 @@
     )
   
     </script>
+  @elseif(session('agregado') =='Si')
+
+    <script type="text/javascript">
+
+        Swal.fire(
+
+           'El Cliente a sido Agregado',
+           '',
+           'success'
+
+      )
+
+  </script>
+
   @endif
 
   <script type="text/javascript">

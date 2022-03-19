@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\TecnicosController;
-
+use App\Http\Controllers\ClientesController;
 
 
 Route::get('/', function () {
@@ -29,3 +29,7 @@ Route::delete('borrar-Servicio/{id}', [ServiciosController::class, 'destroy']);
 Route::get('Tecnicos', [TecnicosController::class, 'index']);
 Route::post('Tecnicos', [TecnicosController::class, 'store']);
 Route::get('Eliminar-Tecnico/{id}', [TecnicosController::class, 'destroy']);
+
+Route::get('Clientes', [ClientesController::class, 'index']);
+Route::get('Crear-Cliente', [ClientesController::class, 'create']);
+Route::post('Crear-Cliente', [ClientesController::class, 'store']);

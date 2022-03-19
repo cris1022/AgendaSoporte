@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tecnicos extends Model
+class Clientes extends Model
 {
     use HasFactory;
 
@@ -14,19 +14,9 @@ class Tecnicos extends Model
     protected $fillable=[
 
         'name','email','password','documento','telefono','direccion','tarjeta_profesional','id_servicio','rol',
-
-
-
-
-
-
     ];
-
     public $timestamps=false;
 
-    public function SER(){
-
-        return $this->belongsTo(Servicios::class,'id_servicio');
-    }
+    
 
 }

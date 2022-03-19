@@ -23,7 +23,7 @@
             </a>
         </li>
         <li>
-            <a href="{{url('Inicio')}}">
+            <a href="{{url('Clientes')}}">
                 <i class=" fa fa-user-circle"></i>
                 <span>Clientes</span>
             </a>

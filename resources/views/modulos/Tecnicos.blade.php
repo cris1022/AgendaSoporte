@@ -42,7 +42,7 @@
                         <tr>
                             <td>{{ $tecnico->id}}</td>
                             <td>{{ $tecnico->name}}</td>
-                            <td>{{ $tecnico->SER->servicio}}</td>
+                            <td>{{ $tecnico->SER->servicios}}</td>
                             <td>{{ $tecnico->email}}</td>
                             @if($tecnico->documento !="")
                                  <td>{{ $tecnico->documento}}</td>
