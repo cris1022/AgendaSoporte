@@ -38,23 +38,35 @@
 
                     <tbody>
 
+                        @foreach($clientes as $cliente)
+
+
                         <tr>
 
-                            <td>11</td>
-                            <td>Cliente</td>
-                            <td>123456</td>
-                            <td>11@gmail.com</td>
-                            <td>11111111</td>
-                            <td>tr14</td>
+                            <td>{{$cliente->id}}</td>
+                            <td>{{$cliente->name}}</td>
+                            <td>{{$cliente->documento}}</td>
+                            <td>{{$cliente->email}}</td>
+
+                            @if($cliente->telefono !="")
+                                <td>{{$cliente->telefono}}</td>
+                            @else
+                            
+                                <td>No disponible</td>
+                            @endif
+                            <td>{{$cliente->direccion}}</td>    
                             <td>
 
-                                <button class="btn btn-success"> <i class="fa fa-pencil"> </i> </button>
+                                <a href="Editar-Cliente/{{ $cliente->id }}"><button class="btn btn-success"> <i class="fa fa-pencil"> </i> </button></a>
 
                                 <button class="btn btn-danger"> <i class="fa fa-trash"> </i> </button>
 
                             </td>
                         </tr>
                     </tbody>
+                        @endforeach
+
+                        
                 </table>
 
 

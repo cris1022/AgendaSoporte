@@ -21,8 +21,9 @@ class ClientesController extends Controller
             return redirect('Inicio');
 
             }
+            $clientes=DB::select('select*from users where rol="cliente"');
             
-        return view ('modulos.Clientes');
+        return view ('modulos.Clientes')->with ('clientes',$clientes);
     }
 
 
@@ -73,38 +74,82 @@ class ClientesController extends Controller
   
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Clientes  $clientes
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Clientes $clientes)
+   
+    public function edit(Clientes $id)
     {
-        //
+        if(auth()->user()->rol != "administrador"&& auth()->user()->rol != "secretaria"&& auth()->
+        user()->rol != "tecnico"){
+       
+        return redirect('Inicio');
+
+        }
+
+        $cliente=Clientes::find($id->id);
+
+        return view('modulos.Editar-Cliente')->with('cliente', $cliente);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Clientes  $clientes
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Clientes $clientes)
+   
+    public function update(Request $request, Clientes $cliente)
     {
-        //
-    }
+        if($cliente["email"]!=request('email')&& request('passwordN')!=""){
+            $datos=request()->validate([
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Clientes  $clientes
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Clientes $clientes)
-    {
-        //
+                'name'=>['required'],
+                'documento'=>['required'],
+                'telefono'=>['required'],
+                'direccion'=>['required'],
+                'passwordN'=>['required', 'string', 'min:3'],
+                'email'=>['required', 'string', 'email','unique:users']
+
+            ]);
+            DB::table('users')->where('id', $cliente["id"])->update(['name' => $datos["name"],'email'
+            =>$datos["email"],'documento'=>$datos["documento"],'telefono'=>$datos["telefono"],'direccion'=>$datos["direccion"],'password'=>Hash::make($datos["passwordN"])]);
+        }else if($cliente["email"]!=request('email')&& request('passwordN')==""){
+
+            $datos=request()->validate([
+
+                'name'=>['required'],
+                'documento'=>['required'],
+                'telefono'=>['required'],
+                'direccion'=>['required'],
+                'password'=>['required', 'string', 'min:3'],
+                'email'=>['required', 'string', 'email','unique:users']
+
+            ]);
+            DB::table('users')->where('id', $cliente["id"])->update(['name' => $datos["name"],'email'
+            =>$datos["email"],'documento'=>$datos["documento"],'telefono'=>$datos["telefono"],'direccion'=>$datos["direccion"],'password'=>Hash::make($datos["password"])]);
+
+        }else if($cliente["email"]==request('email')&& request('passwordN')!=""){
+
+            $datos=request()->validate([
+
+                'name'=>['required'],
+                'documento'=>['required'],
+                'telefono'=>['required'],
+                'direccion'=>['required'],
+                'passwordN'=>['required', 'string', 'min:3'],
+                'email'=>['required', 'string', 'email']
+
+            ]);
+            DB::table('users')->where('id', $cliente["id"])->update(['name' => $datos["name"],'email'
+            =>$datos["email"],'documento'=>$datos["documento"],'telefono'=>$datos["telefono"],'direccion'=>$datos["direccion"],'password'=>Hash::make($datos["passwordN"])]);
+
+        }else{
+            $datos=request()->validate([
+
+                'name'=>['required'],
+                'documento'=>['required'],
+                'telefono'=>['required'],
+                'direccion'=>['required'],
+                'password'=>['required', 'string', 'min:3'],
+                'email'=>['required', 'string', 'email']
+
+            ]);
+            DB::table('users')->where('id', $cliente["id"])->update(['name' => $datos["name"],'email'
+            =>$datos["email"],'documento'=>$datos["documento"],'telefono'=>$datos["telefono"],'direccion'=>$datos["direccion"],'password'=>Hash::make($datos["password"])]);
+        }
+        return redirect('Clientes');
     }
 
     /**
