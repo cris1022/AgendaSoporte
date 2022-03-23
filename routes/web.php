@@ -5,6 +5,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\TecnicosController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\CitasController;
 
 
 Route::get('/', function () {
@@ -36,3 +37,6 @@ Route::post('Crear-Cliente', [ClientesController::class, 'store']);
 Route::get('Editar-Cliente/{id}', [ClientesController::class, 'edit']);
 Route::put('actualizar-cliente/{cliente}', [ClientesController::class, 'update']);
 Route::get('Eliminar-Cliente/{id}', [ClientesController::class, 'destroy']);
+
+
+Route::get('Citas/{id}', [CitasController::class, 'index']);

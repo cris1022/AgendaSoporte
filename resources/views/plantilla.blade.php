@@ -52,6 +52,10 @@
     @if(auth()->user()->rol=="secretaria")
 
       @include('modulos.menuSecretaria')
+
+    @elseif (auth()->user()->rol=="tecnico")
+
+      @include('modulos.menuTecnico') 
       
     @endif
   
