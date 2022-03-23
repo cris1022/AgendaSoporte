@@ -18,7 +18,7 @@
 
                     <div class="form-group">
 
-                        <h2>Nombres y Apellidos:</h2>
+                        <h4>Nombres y Apellidos:</h4>
                         <input type="text" name="name" class="form-control input-lg">
 
 
@@ -26,12 +26,12 @@
                      
                     <div class="form-group">
 
-                        <h2>Documento:</h2>
+                        <h4>Documento:</h4>
                         <input type="text" name="documento" class="form-control input-lg">
                     </div>
                     <div class="form-group">
 
-                        <h2>Email:</h2>
+                        <h4>Email:</h4>
                         <input type="email" class="form-control input-lg" name="email" value="">
                                 @error('email')
                                 <div class="alert alert-danger">El email ya existe</div>
@@ -39,18 +39,18 @@
                     </div>
                     <div class="form-group">
 
-                        <h2>Telefono:</h2>
+                        <h4>Telefono:</h4>
                         <input type="text" name="telefono" class="form-control input-lg">
                     </div>
                       <div class="form-group">
 
-                        <h2>Direccion:</h2>
+                        <h4>Direccion:</h4>
                         <input type="text" name="direccion" class="form-control input-lg">
                     </div>
 
                       <div class="form-group">
 
-                        <h2>Password:</h2>
+                        <h4>Contraseña:</h4>
                         <input type="text" name="password" class="form-control input-lg">
                     </div>
 

@@ -162,6 +162,19 @@
       )
 
   </script>
+  @elseif(session('actualizadoP') =='Si')
+
+<script type="text/javascript">
+
+    Swal.fire(
+
+       'El Cliente  ha sido actualizado',
+       '',
+       'success'
+
+  )
+
+</script>
 
   @endif
 
@@ -190,6 +203,32 @@
         }) 
         
       })
+
+
+      $('.table').on('click', '.EliminarCliente', function () {
+
+var Cid =$(this).attr('Cid');
+var Cliente =$(this).attr('Cliente');
+
+Swal.fire({
+
+  title:'¿Seguro(a) que desea eliminar al  Cliente: '+Cliente+'?',
+  icon: 'warning',
+  showCancelButton:true,
+  cancelButtonText: 'Cancelar',
+  CancelButtonColor: '#d33',
+  confirmButtonText: 'Eliminar',
+  confirmButtonColor: '#3085d6'
+
+}).then((result) =>{
+
+ if(result.isConfirmed){
+
+   window.location ="Eliminar-Cliente/"+Cid;
+  }
+}) 
+
+})
 
   </script>
   

@@ -35,3 +35,4 @@ Route::get('Crear-Cliente', [ClientesController::class, 'create']);
 Route::post('Crear-Cliente', [ClientesController::class, 'store']);
 Route::get('Editar-Cliente/{id}', [ClientesController::class, 'edit']);
 Route::put('actualizar-cliente/{cliente}', [ClientesController::class, 'update']);
+Route::get('Eliminar-Cliente/{id}', [ClientesController::class, 'destroy']);

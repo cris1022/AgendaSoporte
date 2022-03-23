@@ -149,17 +149,19 @@ class ClientesController extends Controller
             DB::table('users')->where('id', $cliente["id"])->update(['name' => $datos["name"],'email'
             =>$datos["email"],'documento'=>$datos["documento"],'telefono'=>$datos["telefono"],'direccion'=>$datos["direccion"],'password'=>Hash::make($datos["password"])]);
         }
-        return redirect('Clientes');
+        return redirect('Clientes')->with('actualizadoP', 'Si');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Clientes  $clientes
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Clientes $clientes)
+    
+    public function destroy( $id)
     {
-        //
+       Clientes:: destroy($id);
+
+       
+       return redirect('Clientes');
+
+     
     }
+
+  
 }

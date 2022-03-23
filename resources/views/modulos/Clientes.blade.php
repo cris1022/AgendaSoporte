@@ -59,7 +59,10 @@
 
                                 <a href="Editar-Cliente/{{ $cliente->id }}"><button class="btn btn-success"> <i class="fa fa-pencil"> </i> </button></a>
 
-                                <button class="btn btn-danger"> <i class="fa fa-trash"> </i> </button>
+                           
+
+                               <button class="btn btn-danger EliminarCliente" Cid="{{$cliente->id}}"Cliente="{{$cliente->name}}" > <i class="fa fa-trash"> </i> </button>
+                               
 
                             </td>
                         </tr>
