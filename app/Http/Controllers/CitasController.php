@@ -23,36 +23,28 @@ class CitasController extends Controller
       return view('modulos.Citas')->with('horarios', $horarios);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    
+    public function HorarioTecnico(Request $request)
     {
-        //
+        $datos=request();
+        DB::table('horarios')->insert(['id_tecnico'=>auth()->user()->id, 'horaInicio'=>$datos["horaInicio"], 'horaFin'=>$datos["horaFin"]]);
+
+        return redirect('Citas/'.auth()->user()->id);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function EditarHorario(Request $request)
     {
-        //
+        $datos=request();
+        DB::table('horarios')->where('id', $datos['id'])->update(['horaInicio'=>$datos["horaInicioE"], 'horaFin'=>$datos["horaFinE"]]);
+
+        return redirect('Citas/'.auth()->user()->id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
+
+   
     public function show(Citas $citas)
     {
-        //
+       
     }
 
     /**

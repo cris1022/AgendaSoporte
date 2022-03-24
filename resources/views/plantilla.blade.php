@@ -31,6 +31,11 @@
   <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
 
+<!-- Full Calendar -->
+
+<link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/fullcalendar/dist/fullcalendar.min.css">
+<link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
+
 
  
   <!-- Google Font -->
@@ -41,13 +46,11 @@
 
 
 
-<div class="wrapper">
-      
-</div>
+
   
 @if(Auth::user())
-
-    @include('modulos.cabecera')
+  <div class="wrapper">
+       @include('modulos.cabecera')
 
     @if(auth()->user()->rol=="secretaria")
 
@@ -61,7 +64,7 @@
   
     @yield('content')
 
-  
+  </div>
   @else
   
     @yield('contenido')
@@ -108,6 +111,14 @@
 <script src="http://localhost/agendasoporte-l8/public/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
 <script src="http://localhost/agendasoporte-l8/public/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- Full Calendar  -->
+
+<script src="http://localhost/agendasoporte-l8/public/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="http://localhost/agendasoporte-l8/public/bower_components/fullcalendar/dist/locale/es.js"></script>
+<script src="http://localhost/agendasoporte-l8/public/bower_components/moment/moment.js"></script>
+
+
 
 <script type="text/javascript">
 
@@ -236,6 +247,24 @@ Swal.fire({
 
   </script>
   
+
+
+</script>
+
+<script type="text/javascript">
+var date = new Date();
+    d= date.getDate(),
+    m= date.getMonth(),
+    a= date.getFullYear()
+
+$('#calendario').fullCalendar({
+
+  defaultView:'agendaWeek',
+
+  scrollTime:"08:00",
+  minTime:"08:00",
+  maxTime:"20:00",
+});
 
 
 </script>
