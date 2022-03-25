@@ -107,4 +107,60 @@
 
 </div>
 
+<div class="modal fade" id="CitaModal">
+
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <form method="post" action="">
+
+                    <div class="modal-body">
+
+                        <div class="box-body">
+
+                            <div class="form-group">
+
+                                <h4>Seleccionar Cliente </h4>
+
+                            </div>
+                            <div class="form-group">
+
+                                <h4>Fecha </h4>
+                                <input type="text" class="form-control input-lg" id="Fecha" readonly="">
+
+                            </div>
+                            <div class="form-group">
+
+                                <h4>Hora </h4>
+                                <input type="text" class="form-control input-lg" id="Hora" readonly="">
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary">Pedir Cita</button>
+                        <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+
+        </div>
+</div>
+
+
+
 @endsection

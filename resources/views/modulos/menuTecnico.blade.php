@@ -12,7 +12,7 @@
         </li>
         <li>
             <a href="{{url('Citas/'.auth()->user()->id)}}">
-                <i class="fa fa-handshake-o "></i>
+                <i class="fa fa-calendar-check-o "></i>
                 <span>Citas</span>
             </a>
         </li>
