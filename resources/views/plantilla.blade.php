@@ -248,10 +248,7 @@ Swal.fire({
   </script>
   
 
-
-</script>
-
-<script type="text/javascript">
+  <script type="text/javascript">
 var date = new Date();
     d= date.getDate(),
     m= date.getMonth(),
@@ -287,7 +284,7 @@ $('#calendario').fullCalendar({
 
     }else{
 
-      var HF=  horaFinal+":00:00";
+      
     }
 
 
@@ -302,6 +299,9 @@ $('#calendario').fullCalendar({
 
 
 </script>
+
+</script>
+
 
 </body>
 </html>
