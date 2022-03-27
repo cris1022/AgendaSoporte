@@ -40,5 +40,7 @@ Route::get('Eliminar-Cliente/{id}', [ClientesController::class, 'destroy']);
 
 
 Route::get('Citas/{id}', [CitasController::class, 'index']);
-Route::post('Citas/{id}', [CitasController::class, 'HorarioTecnico']);
+Route::post('Horario', [CitasController::class, 'HorarioTecnico']);
 Route::put('editar-horario/{id}', [CitasController::class, 'EditarHorario']);
+Route::post('Citas/{id_tecnico}', [CitasController::class, 'CrearCita']);
+Route::delete('borrar-cita', [CitasController::class, 'destroy']);

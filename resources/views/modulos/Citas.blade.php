@@ -7,7 +7,7 @@
 
         @if($horarios==null)
 
-            <form action="" method="post">
+            <form action="{{url('Horario')}}" method="post">
 
 
                 @csrf
@@ -115,6 +115,7 @@
             <div class="modal-content">
 
                 <form method="post" action="">
+                    @csrf
 
                     <div class="modal-body">
 
@@ -123,6 +124,23 @@
                             <div class="form-group">
 
                                 <h4>Seleccionar Cliente </h4>
+
+                                <input type="hidden" name="id_tecnico" value="{{auth()->user()->id}}">
+
+
+                                <select required="" name="id_cliente" id="select2" style="width:100%">
+
+                                    <option value="">Cliente....</option>
+
+                                    @foreach($clientes as $cliente)
+
+                                        @if($cliente->rol=="cliente")
+
+                                        <option value="{{$cliente->id}}">{{$cliente->name}}-{{$cliente->documento}}</option>
+
+                                        @endif
+                                    @endforeach
+                                </select>
 
                             </div>
                             <div class="form-group">
@@ -135,6 +153,10 @@
 
                                 <h4>Hora </h4>
                                 <input type="text" class="form-control input-lg" id="Hora" readonly="">
+
+                                <input type="hidden" name="FyHinicio"class="form-control input-lg" id="FyHinicio" readonly="">
+
+                                <input type="hidden" name="FyHfinal"class="form-control input-lg" id="FyHfinal" readonly="">
 
                             </div>
 
@@ -159,6 +181,62 @@
 
 
         </div>
+</div>
+
+<div class="modal fade " id="EventoModal">
+
+    <div class="modal-dialog"> 
+
+        <div class="modal-content">
+
+            <form method="post"action="{{url('borrar-cita')}}">
+
+                @csrf 
+                @method('delete')
+
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+
+                        <h4>Cliente</h4>
+
+                        <h5 id="cliente"></h5>
+
+                        <input type="hidden" name="idCita" id="idCita">
+
+
+                        
+                        <?php
+
+                            $exp = explode("/", $_SERVER["REQUEST_URI"]);
+
+                            echo '<input type="hidden" name="idTecnico" value="'.$exp[4].'">';
+
+                        ?>
+
+                        
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-warning">Cancelar Citas</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">Cerrar</button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+
 </div>
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Citas;
+use App\Models\Clientes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +21,12 @@ class CitasController extends Controller
       }
 
       $horarios = DB::select('select * from horarios where id_tecnico ='.$id);
-      return view('modulos.Citas')->with('horarios', $horarios);
+
+      $clientes = Clientes::all();
+
+      $citas = Citas::all()->where('id_tecnico',$id);
+
+      return view('modulos.Citas',compact('horarios', 'clientes', 'citas'));
     }
 
     
@@ -42,42 +48,22 @@ class CitasController extends Controller
 
 
    
-    public function show(Citas $citas)
+    public function CrearCita (Request $id_tecnico)
     {
+
+        Citas::create(['id_tecnico'=>request('id_tecnico'), 'id_cliente'=>request('id_cliente'), 'FyHinicio'=>request('FyHinicio'), 'FyHfinal'=>request ('FyHfinal')]);
+
+        return redirect ('Citas/'.request('id_tecnico'));
        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Citas $citas)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Citas $citas)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Citas  $citas
-     * @return \Illuminate\Http\Response
-     */
+      
     public function destroy(Citas $citas)
     {
-        //
+
+        DB::table('citas')->whereId(request('idCita'))->delete();
+
+        return redirect('Citas/'.request('idTecnico'));
+        
     }
 }

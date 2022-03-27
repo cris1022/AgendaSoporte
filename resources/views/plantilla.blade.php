@@ -36,6 +36,9 @@
 <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/fullcalendar/dist/fullcalendar.min.css">
 <link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
 
+<!-- Select 2 -->
+<link rel="stylesheet" href="http://localhost/agendasoporte-l8/public/bower_components/select2/dist/css/select2.min.css">
+
 
  
   <!-- Google Font -->
@@ -118,6 +121,14 @@
 <script src="http://localhost/agendasoporte-l8/public/bower_components/fullcalendar/dist/locale/es.js"></script>
 <script src="http://localhost/agendasoporte-l8/public/bower_components/moment/moment.js"></script>
 
+<!-- Select2 -->
+
+<script src="http://localhost/agendasoporte-l8/public/bower_components/select2/dist/js/select2.js"></script>
+
+
+
+
+
 
 
 <script type="text/javascript">
@@ -146,6 +157,8 @@
                }
 
   });
+
+$('#select2').select2();
 
 </script>
 
@@ -249,17 +262,63 @@ Swal.fire({
  
 </script>
 
+<?php
+
+  $exp= explode("/",$_SERVER["REQUEST_URI"]);
+
+?>
+@if($exp[3]=="Citas")
+
 <script type="text/javascript">
 
   var date= new Date();
   var d = date.getDate(),
       m = date.getMonth(),
       a = date.getFullYear()
-  $('#calendario').fullCalendar({
-    defaultView:'agendaWeek',
-    scrollTime: "{{$hora->horaInicio}}",
-    minTime: "{{$hora->horaInicio}}",
-    maxTime: "{{$hora->horaFin}}",
+  
+      $('#calendario').fullCalendar({
+    
+        defaultView:'agendaWeek',
+        
+
+        events:[
+
+          @foreach($citas as $cita)
+
+            @if(auth()->user()->rol=="tecnico")
+
+              {
+
+                 id:'{{ $cita->id}}',
+                 title:'{{ $cita->PAC->name}}',
+                 start: '{{ $cita->FyHinicio}}',
+                 end:'{{ $cita->FyHfinal}}'
+
+              },
+
+            @endif
+
+          @endforeach
+
+        ],
+
+        @if($horarios !=null) 
+
+          scrollTime: "{{$hora->horaInicio}}",    
+          minTime: "{{$hora->horaInicio}}",
+          maxTime: "{{$hora->horaFin}}",
+        @else
+          scrollTime: null,
+          minTime: null,
+          maxTime: null,
+
+        @endif
+   
+    
+
+    
+
+    
 
     dayClick:function (date,jsEvent,view) {
 
@@ -284,15 +343,63 @@ Swal.fire({
         var HF= horaFinal+":00:00";
       }
 
+      n = new Date();
+      y = n.getFullYear();
+      m= n.getMonth()+1;
+      d= n.getDate();
 
-      $('#CitaModal').modal();
+      if(m<10){
 
-      $('#Fecha').val(HF);
+        M= "0"+m;
+
+        if(d<10){
+          D = "0"+d;
+          
+          diaActual = y +"-"+M+"-"+D;
+
+        }else{
+          diaActual = y +"-"+M+"-"+d;
+        }
+
+        
+      }else{
+        diaActual = y +"-"+m+"-"+d;
+      }
+
+      if(diaActual<= fecha[0]){
+
+        
+        $('#CitaModal').modal();
+
+      }
+
+     
+
+      $('#Fecha').val(fecha[0]);
+      $('#Hora').val(hora1[0]+":00:00");
+      $('#FyHinicio').val(fecha[0]+" "+hora1[0]+":00:00");
+      $('#FyHfinal').val(fecha[0]+" "+HF);
+     
+
 
       
+    },
+
+    eventClick:function(calEvent,jsEvent, View){
+        if("{{auth()->user()->rol}}"=="tecnico"){
+
+          $('#EventoModal').modal();
+        }
+
+        $('#cliente').html(calEvent.title);
+        $('#idCita').val(calEvent.id);
+
     }
+
   });
   </script>
+
+  @endif
 
 
 </body>
