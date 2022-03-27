@@ -245,62 +245,54 @@ Swal.fire({
 
 })
 
-  </script>
-  
+</script>
+ 
+</script>
 
-  <script type="text/javascript">
-var date = new Date();
-    d= date.getDate(),
-    m= date.getMonth(),
-    a= date.getFullYear()
+<script type="text/javascript">
 
-$('#calendario').fullCalendar({
+  var date= new Date();
+  var d = date.getDate(),
+      m = date.getMonth(),
+      a = date.getFullYear()
+  $('#calendario').fullCalendar({
+    defaultView:'agendaWeek',
+    scrollTime: "{{$hora->horaInicio}}",
+    minTime: "{{$hora->horaInicio}}",
+    maxTime: "{{$hora->horaFin}}",
 
-  defaultView:'agendaWeek',
+    dayClick:function (date,jsEvent,view) {
 
-  scrollTime:"{{$hora->horaInicio}}",
-  minTime:"{{$hora->horaInicio}}",
-  maxTime:"{{$hora->horaFin}}",
+      var fecha =date.format();
 
-  dayClick:function(date,jsEvent,view){
+      var hora =("01:00:00").split(":");
 
-    var fecha= date.format();
+      fecha= fecha.split("T");
 
-    var hora= ("01:00:00").split(":");
+      var hora1=(fecha[1]).split(":");
 
-    fecha= fecha.split("T");
+      HI = parseFloat(hora1[0]);
+      HA = parseFloat(hora[0]);
 
-    var hora1 = (fecha[1]).split(":");
+      var horaFinal = HI+ HA;
 
-    HI=parseFloat(hora1[0]);
-    HA=parseFloat(hora[0]);
+      if(horaFinal <10 && horaFinal >0){
+
+        var HF = "0"+horaFinal+":00:00";
+      }else{
+
+        var HF= horaFinal+":00:00";
+      }
 
 
-    var horaFinal= HI + HA;
+      $('#CitaModal').modal();
 
-    if(horaFinal < 10 && horaFinal > 0){
-
-      var HF="0"+horaFinal+"00:00";
-
-    }else{
+      $('#Fecha').val(HF);
 
       
     }
-
-
-
-    $('#CitaModal').modal();
-
-    $('#Fecha').val(HF);
-
-
-  }
-});
-
-
-</script>
-
-</script>
+  });
+  </script>
 
 
 </body>
