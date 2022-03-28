@@ -294,11 +294,39 @@ Swal.fire({
               {
 
                  id:'{{ $cita->id}}',
-                 title:'{{ $cita->PAC->name}}',
+                 title:'{{ $cita->PAC->name}} Direccion: {{$cita->DI->direccion}}',
                  start: '{{ $cita->FyHinicio}}',
                  end:'{{ $cita->FyHfinal}}'
 
               },
+
+            @elseif(auth()->user()->rol=="cliente") 
+
+              @if($cita->id_cliente==auth()->user()->id)
+                {
+
+                  id:'{{ $cita->id}}',
+                  title:'{{ $cita->PAC->name}}' ,
+             
+                  start: '{{ $cita->FyHinicio}}',
+                  end:'{{ $cita->FyHfinal}}'
+
+                },
+
+                @else  
+
+                  {
+
+                    id:'{{ $cita->id}}',
+                    title:'No disponible',
+                    start: '{{ $cita->FyHinicio}}',
+                    end:'{{ $cita->FyHfinal}}'
+
+                  },  
+              @endif  
+             
+              
+
 
             @endif
 
@@ -371,9 +399,17 @@ Swal.fire({
       }
 
       if(diaActual<= fecha[0]){
+          if("{{auth()->user()->rol }}" == "tecnico"){
+
+            $('#CitaModal').modal();
+
+
+          }else if("{{auth()->user()->rol}}"=="cliente"){
+
+            $('#Cita').modal();
+          }
 
         
-        $('#CitaModal').modal();
 
       }
 
@@ -383,6 +419,12 @@ Swal.fire({
       $('#Hora').val(hora1[0]+":00:00");
       $('#FyHinicio').val(fecha[0]+" "+hora1[0]+":00:00");
       $('#FyHfinal').val(fecha[0]+" "+HF);
+
+      $('#FechaC').val(fecha[0]);
+      $('#Horac').val(hora1[0]+":00:00");
+      $('#FyHinicioC').val(fecha[0]+" "+hora1[0]+":00:00");
+      $('#FyHfinalC').val(fecha[0]+" "+HF);
+     
      
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Citas;
 use App\Models\Clientes;
+use App\Models\Tecnicos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,9 @@ class CitasController extends Controller
 
       $citas = Citas::all()->where('id_tecnico',$id);
 
-      return view('modulos.Citas',compact('horarios', 'clientes', 'citas'));
+      $tecnico = Tecnicos::find($id);
+
+      return view('modulos.Citas',compact('horarios', 'clientes', 'citas','tecnico'));
     }
 
     
@@ -48,8 +51,10 @@ class CitasController extends Controller
 
 
    
-    public function CrearCita (Request $id_tecnico)
+    public function CrearCita(Request $id_tecnico)
+    
     {
+        
 
         Citas::create(['id_tecnico'=>request('id_tecnico'), 'id_cliente'=>request('id_cliente'), 'FyHinicio'=>request('FyHinicio'), 'FyHfinal'=>request ('FyHfinal')]);
 
