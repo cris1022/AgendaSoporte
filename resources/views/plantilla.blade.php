@@ -62,6 +62,10 @@
     @elseif (auth()->user()->rol=="tecnico")
 
       @include('modulos.menuTecnico') 
+
+    @elseif (auth()->user()->rol=="cliente")
+
+      @include('modulos.menuCliente')   
       
     @endif
   

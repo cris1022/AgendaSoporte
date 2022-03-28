@@ -25,11 +25,24 @@ Route::post('Servicios', [ServiciosController::class, 'store']);
 Route::put('Servicio/{id}', [ServiciosController::class, 'update']);
 Route::delete('borrar-Servicio/{id}', [ServiciosController::class, 'destroy']);
 
+//Ver Servicios como Cliente 
+
+Route::get('Ver-Servicios', [ServiciosController::class, 'verServicios']);
+
+
+
 
 
 Route::get('Tecnicos', [TecnicosController::class, 'index']);
 Route::post('Tecnicos', [TecnicosController::class, 'store']);
 Route::get('Eliminar-Tecnico/{id}', [TecnicosController::class, 'destroy']);
+
+
+//Ver tecnicos  como Cliente 
+
+Route::get('Ver-Tecnicos/{id}', [TecnicosController::class, 'VerTecnicos']);
+
+
 
 Route::get('Clientes', [ClientesController::class, 'index']);
 Route::get('Crear-Cliente', [ClientesController::class, 'create']);

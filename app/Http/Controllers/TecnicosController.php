@@ -64,5 +64,16 @@ class TecnicosController extends Controller
        DB::table('users')->whereId($id)->delete();
        return redirect('Tecnicos');
     }
+
+    public function VerTecnicos($id)
+    {
+        $servicio = Servicios::find($id);
+
+        $tecnicos= DB::select('select *from users where id_servicio = '.$id);
+
+        $horarios= DB::select('select *from horarios');
+
+        return view("modulos.Ver-Tecnicos", compact('servicio','tecnicos','horarios'));
+    }
 }
 // cometario prueba*

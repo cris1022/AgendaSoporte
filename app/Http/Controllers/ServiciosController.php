@@ -50,4 +50,11 @@ class ServiciosController extends Controller
         DB::table('servicios')->whereId($id)->delete();
        return redirect('Servicios');
     }
+
+    public function verServicios()
+    {
+      $servicios= Servicios::all();
+
+      return view('modulos.Ver-Servicios')->with('servicios',$servicios);
+    }
 }

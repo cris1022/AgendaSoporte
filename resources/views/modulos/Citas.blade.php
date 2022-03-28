@@ -7,81 +7,90 @@
 
         @if($horarios==null)
 
-            <form action="{{url('Horario')}}" method="post">
+            @if(auth()->user()->rol== "tecnico")
+
+                <form action="{{url('Horario')}}" method="post">
 
 
-                @csrf
-                <div class="row">
+                    @csrf
+                    <div class="row">
 
 
-                    <div class="col-md-2">
+                        <div class="col-md-2">
 
-                        Desde <input type="time" class="form-control" name="horaInicio" >
+                            Desde <input type="time" class="form-control" name="horaInicio" >
+
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                            Hasta <input type="time" class="form-control" name="horaFin" >
+
+
+                        </div>
+
+                        <br>
+
+                        <div class="col-md-1">
+
+                            <button type="submit" class="btn btn-success">Guardar</button>
+
+                        </div>
 
 
                     </div>
 
-                    <div class="col-md-2">
 
-                        Hasta <input type="time" class="form-control" name="horaFin" >
+                </form>
+            @endif    
 
-
-                    </div>
-
-                    <br>
-
-                    <div class="col-md-1">
-
-                        <button type="submit" class="btn btn-success">Guardar</button>
-
-                    </div>
-
-
-                </div>
-
-
-            </form>
               
 
         @else
 
             @foreach($horarios as $hora)
+                @if(auth()->user()->rol== "tecnico") 
 
-            <form action="{{url('editar-horario/'.$hora->id)}}" method="post">
-
-
-                @csrf
-                @method('put')
-                <div class="row">
+                    <form action="{{url('editar-horario/'.$hora->id)}}" method="post">
 
 
-                    <div class="col-md-2">
-
-                        Desde <input type="time" class="form-control" name="horaInicioE" value="{{$hora->horaInicio}}" >
-
-
-                    </div>
-
-                    <div class="col-md-2">
-
-                    Hasta <input type="time" class="form-control" name="horaFinE" value="{{$hora->horaFin}}">
+                        @csrf
+                        @method('put')
+                        <div class="row">
 
 
-                    </div>
+                            <div class="col-md-2">
 
-                <br>
-
-                    <div class="col-md-1">
-
-                     <button type="submit" class="btn btn-success">Editar</button>
-
-                    </div>
+                                Desde <input type="time" class="form-control" name="horaInicioE" value="{{$hora->horaInicio}}" >
 
 
-                </div>
+                            </div>
+
+                            <div class="col-md-2">
+
+                            Hasta <input type="time" class="form-control" name="horaFinE" value="{{$hora->horaFin}}">
 
 
-            </form>
+                            </div>
+
+                        <br>
+
+                            <div class="col-md-1">
+
+                            <button type="submit" class="btn btn-success">Editar</button>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </form>
+                    @elseif(auth()->user()->rol== "cliente")
+
+                        <h3>{{$hora->horaInicio}}-{{$hora->horaFin}}</h3>
+                @endif       
 
             @endforeach
         
