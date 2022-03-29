@@ -66,6 +66,11 @@
     @elseif (auth()->user()->rol=="cliente")
 
       @include('modulos.menuCliente')   
+
+    @else  
+    
+      @include('modulos.menuAdministrador')
+
       
     @endif
   
@@ -196,17 +201,31 @@ $('#select2').select2();
   </script>
   @elseif(session('actualizadoP') =='Si')
 
-<script type="text/javascript">
+    <script type="text/javascript">
+
+      Swal.fire(
+
+        'El Cliente  ha sido actualizado',
+        '',
+        'success'
+
+    )
+
+    </script>
+  @elseif(session('SecretariaCreada') =='Si')
+
+  <script type="text/javascript">
 
     Swal.fire(
 
-       'El Cliente  ha sido actualizado',
-       '',
-       'success'
+      'La Secretaria ha sido Creada',
+      '',
+      'success'
 
   )
 
-</script>
+  </script>
+
 
   @endif
 
@@ -294,7 +313,7 @@ Swal.fire({
               {
 
                  id:'{{ $cita->id}}',
-                 title:'{{ $cita->PAC->name}} Direccion: {{$cita->DI->direccion}}',
+                 title:'{{ $cita->PAC->name}} Direccion: {{$cita->DI->direccion}} Telefono:{{$cita->TEL->telefono}}',
                  start: '{{ $cita->FyHinicio}}',
                  end:'{{ $cita->FyHfinal}}'
 
@@ -307,7 +326,6 @@ Swal.fire({
 
                   id:'{{ $cita->id}}',
                   title:'{{ $cita->PAC->name}}' ,
-             
                   start: '{{ $cita->FyHinicio}}',
                   end:'{{ $cita->FyHfinal}}'
 
@@ -421,7 +439,7 @@ Swal.fire({
       $('#FyHfinal').val(fecha[0]+" "+HF);
 
       $('#FechaC').val(fecha[0]);
-      $('#Horac').val(hora1[0]+":00:00");
+      $('#HoraC').val(hora1[0]+":00:00");
       $('#FyHinicioC').val(fecha[0]+" "+hora1[0]+":00:00");
       $('#FyHfinalC').val(fecha[0]+" "+HF);
      

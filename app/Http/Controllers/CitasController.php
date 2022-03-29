@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Citas;
 use App\Models\Clientes;
 use App\Models\Tecnicos;
+use App\Models\Servicios;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,7 +59,7 @@ class CitasController extends Controller
     {
         
 
-        Citas::create(['id_tecnico'=>request('id_tecnico'), 'id_cliente'=>request('id_cliente'), 'FyHinicio'=>request('FyHinicio'), 'FyHfinal'=>request ('FyHfinal')]);
+        Citas::create(['id_tecnico'=>request('id_tecnico'), 'id_cliente'=>request('id_cliente'), 'FyHinicio'=>request('FyHinicio'), 'FyHfinal'=>request('FyHfinal')]);
 
         return redirect ('Citas/'.request('id_tecnico'));
        
@@ -71,4 +74,27 @@ class CitasController extends Controller
         return redirect('Citas/'.request('idTecnico'));
         
     }
+
+    public function historial()
+    {       
+        if(auth()->user()->rol != "cliente"){
+
+
+            return view('modulos.Inicio');
+       
+        }else{
+
+            $citas= Citas::all()->where('id_cliente', auth()->user()->id);
+
+            $tecnicos= User::all()->where('rol','tecnico');
+            $servicios= Servicios::all();
+
+            return view('modulos.Historial', compact('citas', 'tecnicos','servicios'));
+
+        }
+        
+    }
 }
+
+
+

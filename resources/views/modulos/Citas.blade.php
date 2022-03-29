@@ -94,7 +94,7 @@
                     </form>
                     @elseif(auth()->user()->rol== "cliente")
 
-                        <h3>{{$hora->horaInicio}}-{{$hora->horaFin}}</h3>
+                        <h3>{{$hora->horaInicio}}  -  {{$hora->horaFin}}</h3>
                 @endif       
 
             @endforeach
@@ -259,7 +259,7 @@
 
         <div class="modal-content">
 
-            <form method="post"action="">
+            <form method="post">
 
              @csrf
 
@@ -273,35 +273,35 @@
 
                                 $exp = explode("/", $_SERVER["REQUEST_URI"]);
 
-                                echo '<input type="" name="id_tecnico" value="'.$exp[4].'">';
+                                echo '<input type="hidden" name="id_tecnico" value="'.$exp[4].'">';
 
                             ?>
-                            <input type="" name="id_cliente" value="{{auth()->user()->id}}">                
+                            <input type="hidden" name="id_cliente" value="{{auth()->user()->id}}">                
 
                         
 
                         </div>
-                        <div class="form-gropu">
+                        <div class="form-group">
 
                             <h4>Fecha:</h4>
 
                             <input type="text" class="form-control input-lg" id="FechaC" readonly="" >
 
                         </div>
-                        <div class="form-gropu">
+                        <div class="form-group">
 
                             <h4>Hora:</h4>
 
-                            <input type="text" class="form-control input-lg" id="Horac" readonly="" >
+                            <input type="text" class="form-control input-lg" id="HoraC" readonly="" >
 
                         </div>
-                        <div class="form-gropu">
+                        <div class="form-group">
 
                          
 
-                            <input type="hidden" class="form-control input-lg" id="FyHinicioC" name="FyHinicioC" readonly="" >
+                            <input type="hidden" class="form-control input-lg" id="FyHinicioC" name="FyHinicio" readonly="" >
 
-                            <input type="hidden" class="form-control input-lg" id="FyHfinalC" name="FyHfinalC" readonly="" >
+                            <input type="hidden" class="form-control input-lg" id="FyHfinalC" name="FyHfinal" readonly="" >
 
 
                         </div>
@@ -315,8 +315,6 @@
 
                     <button class="btn btn-primary" type="submit">Pedir Cita</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
-
-
 
                 </div>
             </form>

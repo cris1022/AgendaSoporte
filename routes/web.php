@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\TecnicosController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\SecretariasController;
 
 
 Route::get('/', function () {
@@ -57,3 +58,17 @@ Route::post('Horario', [CitasController::class, 'HorarioTecnico']);
 Route::put('editar-horario/{id}', [CitasController::class, 'EditarHorario']);
 Route::post('Citas/{id_tecnico}', [CitasController::class, 'CrearCita']);
 Route::delete('borrar-cita', [CitasController::class, 'destroy']);
+
+
+//Historial de Citas Paciente
+
+Route::get('Historial', [CitasController::class, 'historial']);
+
+
+
+Route::get('Secretarias', [SecretariasController::class, 'index']);
+Route::post('Secretarias', [SecretariasController::class, 'store']);
+
+
+
+

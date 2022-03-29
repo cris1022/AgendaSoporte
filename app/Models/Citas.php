@@ -30,4 +30,11 @@ class Citas extends Model
         return $this->belongsTo(Clientes::class, 'id_cliente');
     }
 
+    public function TEL()
+    {
+
+        return $this->belongsTo(Clientes::class, 'id_cliente');
+    }
+
+
 }
