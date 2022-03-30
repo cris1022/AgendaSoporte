@@ -64,8 +64,15 @@
                                 @endif
 
                                 <td>
-                                    <button class="btn btn-success"> <i class=" fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger"> <i class=" fa fa-trash"></i></button>
+
+                                    <a href="{{url('Editar-Secretaria/'.$secretaria->id)}}">
+                                        <button class="btn btn-success"> <i class=" fa fa-pencil"></i></button>
+
+                                    </a>
+
+
+                                   
+                                        <button class="btn btn-danger EliminarSecretaria" Sid="{{$secretaria->id}}" > <i class=" fa fa-trash"></i></button>
                                     
                                 </td>
 
@@ -97,7 +104,7 @@
                         <div class="form-group">
 
                             <h4>Nombre y Apellido </h4>
-                            <input type="text " class="form-control input-lg" name="name" vale="{{old('name')}}">
+                            <input type="text " class="form-control input-lg" name="name" value="{{old('name')}}">
                             @error('name')
 
                                 <div class="alert alert-danger">
@@ -128,7 +135,7 @@
                         <div class="form-group">
 
                             <h4>Contraseña </h4>
-                            <input type="text " class="form-control input-lg" name="password" vale="{{old('password')}}">
+                            <input type="text " class="form-control input-lg" name="password" value="{{old('password')}}">
 
                         </div>
 
@@ -141,6 +148,82 @@
                 <div class="modal-footer">
 
                     <button class="btn btn-primary" type="submit">Crear</button>
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Cerrar</button>
+                    
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="EditarSecretaria">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form method="post" action="{{url('actualizar-secretaria/'.$secretaria->id)}}">
+                @csrf 
+
+                @method('put')
+
+                <div class="modal-body">
+
+                    <div class="box-body">
+
+                        <div class="form-group">
+
+                            <h4>Nombre y Apellido </h4>
+                            <input type="text " class="form-control input-lg" name="name"  value="{{$secretaria->name}}">
+                            @error('name')
+
+                                <div class="alert alert-danger">
+
+                                    El nombre ya existe....
+
+                                </div>
+
+                            @enderror
+
+
+                        </div>
+                        <div class="form-group">
+
+                            <h4>Email </h4>
+                            <input type="text " class="form-control input-lg" name="email"  required 
+                            value="{{$secretaria->email}}">
+                            @error('email')
+
+                                <div class="alert alert-danger">
+
+                                    El email ya existe....
+
+                                </div>
+
+                            @enderror
+
+                        </div>
+                        <div class="form-group">
+
+                            <h4>Nueva  Contraseña </h4>
+                            <input type="text " class="form-control input-lg" name="passwordN" value=" ">
+                            <input type="hidden"  name="password" value="{{$secretaria->password}} ">
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-success" type="submit">Guardar Cambios</button>
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cerrar</button>
                     
 

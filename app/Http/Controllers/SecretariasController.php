@@ -54,38 +54,97 @@ class SecretariasController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Secretarias  $secretarias
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Secretarias $secretarias)
+
+    public function destroy($id)
     {
-        //
+        Secretarias::destroy($id);
+        return redirect('Secretarias');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Secretarias  $secretarias
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Secretarias $secretarias)
+   
+    public function show($id)
+
     {
-        //
+
+        if(auth()->user()->rol != "administrador"){
+            return redirect('Inicio');
+        }
+        $secretarias=Secretarias::all()->where('rol','secretaria');
+        $secretaria=Secretarias::find($id);
+
+        return view('modulos.Secretarias',compact('secretarias', 'secretaria'));
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Secretarias  $secretarias
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Secretarias $secretarias)
+   
+    public function update(Request $request, Secretarias $id)
     {
-        //
+
+        if($id['email']!=request('email')&& request('paswordN')!=""){
+
+            $datos=request()->validate([
+
+                'name'=>['required','string','max: 255'],
+                'email'=>['required','string','email','max: 255','unique:users'],
+                'passwordN'=>['required','string','min: 3']
+
+            ]);
+
+            DB::table('users')->where('id',$id["id"])->update(['name'=>$datos["name"],'email'=>$datos["email"],
+            'password'=>Hash::make($datos["passwordN"])]);
+
+
+        }elseif($id['email']!=request('email')&& request('paswordN')==""){
+
+            $datos=request()->validate([
+
+                'name'=>['required','string','max: 255'],
+                'email'=>['required','string','email','max: 255','unique:users'],
+                'password'=>['required','string','min: 3']
+
+            ]);
+
+            DB::table('users')->where('id',$id["id"])->update(['name'=>$datos["name"],'email'=>$datos["email"],
+            'password'=>Hash::make($datos["password"])]);
+
+
+        }elseif($id['email']==request('email')&& request('paswordN')!=""){
+
+
+            $datos=request()->validate([
+
+                'name'=>['required','string','max: 255'],
+                'email'=>['required','string','email','max: 255',],
+                'passwordN'=>['required','string','min: 3']
+
+            ]);
+
+            DB::table('users')->where('id',$id["id"])->update(['name'=>$datos["name"],'email'=>$datos["email"],
+            'password'=>Hash::make($datos["passwordN"])]);
+
+
+
+
+        }else{
+
+            $datos=request()->validate([
+
+                'name'=>['required','string','max: 255'],
+                'email'=>['required','string','email','max: 255',],
+                'passwordN'=>['required','string','min: 3']
+
+            ]);
+
+            DB::table('users')->where('id',$id["id"])->update(['name'=>$datos["name"],'email'=>$datos["email"],
+            'password'=>Hash::make($datos["password"])]);
+
+
+
+
+        }
+
+        return redirect('Secretarias');
+            
     }
 
     /**
@@ -94,8 +153,5 @@ class SecretariasController extends Controller
      * @param  \App\Models\Secretarias  $secretarias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Secretarias $secretarias)
-    {
-        //
-    }
+   
 }

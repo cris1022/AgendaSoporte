@@ -68,6 +68,9 @@ Route::get('Historial', [CitasController::class, 'historial']);
 
 Route::get('Secretarias', [SecretariasController::class, 'index']);
 Route::post('Secretarias', [SecretariasController::class, 'store']);
+Route::get('Eliminar-Secretaria/{id}', [SecretariasController::class, 'destroy']);
+Route::get('Editar-Secretaria/{id}', [SecretariasController::class, 'show']);
+Route::put('actualizar-secretaria/{id}', [SecretariasController::class, 'update']);
 
 
 

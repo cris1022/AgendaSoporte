@@ -281,6 +281,30 @@ Swal.fire({
 
 })
 
+$('.table').on('click', '.EliminarSecretaria', function () {
+
+var Sid =$(this).attr('Sid');
+
+Swal.fire({
+
+  title:'¿Seguro(a) que desea eliminar a esta secretaria?',
+  icon: 'warning',
+  showCancelButton:true,
+  cancelButtonText: 'Cancelar',
+  CancelButtonColor: '#d33',
+  confirmButtonText: 'Eliminar',
+  confirmButtonColor: '#3085d6'
+
+}).then((result) =>{
+
+ if(result.isConfirmed){
+
+   window.location ="Eliminar-Secretaria/"+Sid;
+  }
+}) 
+
+})
+
 </script>
  
 </script>
@@ -289,7 +313,23 @@ Swal.fire({
 
   $exp= explode("/",$_SERVER["REQUEST_URI"]);
 
+ 
 ?>
+
+@if($exp[3]=="Editar-Secretaria")
+
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+
+      $('#EditarSecretaria').modal('toggle');
+
+
+    })
+
+  </script>
+
+@endif
 @if($exp[3]=="Citas")
 
 <script type="text/javascript">
