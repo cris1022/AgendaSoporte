@@ -143,9 +143,11 @@ class SecretariasController extends Controller
 
         }
 
+
         return redirect('Secretarias');
             
     }
+    /****/
 
     /**
      * Remove the specified resource from storage.
