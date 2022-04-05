@@ -136,7 +136,7 @@ class SecretariasController extends Controller
             ]);
 
             DB::table('users')->where('id',$id["id"])->update(['name'=>$datos["name"],'email'=>$datos["email"],
-            'password'=>Hash::make($datos["password"])]);
+            'password'=>Hash::make($datos["passwordN"])]);
 
 
 

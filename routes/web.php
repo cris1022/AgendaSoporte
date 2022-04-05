@@ -20,6 +20,9 @@ Route::get('/Ingresar', function () {
 Auth::routes();
 
 Route::get('Inicio', [InicioController::class, 'index']);
+Route::get('Mis-Datos', [InicioController::class, 'DatosCreate']);
+Route::put('Mis-Datos', [InicioController::class, 'DatosUpdate']);
+
 
 Route::get('Servicios', [ServiciosController::class, 'index']);
 Route::post('Servicios', [ServiciosController::class, 'store']);

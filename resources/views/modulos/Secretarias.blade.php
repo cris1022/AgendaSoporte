@@ -208,9 +208,10 @@
                         </div>
                         <div class="form-group">
 
-                            <h4>Nueva  Contraseña </h4>
-                            <input type="text " class="form-control input-lg" name="passwordN" value=" ">
-                            <input type="hidden"  name="password" value="{{$secretaria->password}} ">
+                            <h4>Nueva  Contraseñas </h4>
+                            <input type="text " class="form-control input-lg" name="passwordN" value="">
+                            <input type="hidden" name="password" value="{{$secretaria->password}} ">
+                            
 
 
                         </div>

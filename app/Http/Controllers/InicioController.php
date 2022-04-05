@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Inicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class InicioController extends Controller
 {
@@ -21,28 +23,11 @@ class InicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function DatosCreate()
     {
-        //
+        return view('modulos.Mis-Datos');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Inicio  $inicio
-     * @return \Illuminate\Http\Response
-     */
     public function show(Inicio $inicio)
     {
         //
