@@ -10,7 +10,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+#estos son cambios de `rueba 
 class CitasController extends Controller
 {
     public function _construct()
